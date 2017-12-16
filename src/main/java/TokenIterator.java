@@ -10,26 +10,29 @@ public class TokenIterator implements Iterator<Token> {
 
     public TokenIterator(String s) {
         lexer.reset(s, 0, s.length(), 0);
-        updateToken();
     }
 
     @Override
     public boolean hasNext() {
+        updateToken();
         return nextToken != null;
     }
 
     @Override
     public Token next() {
-        Token oldToken = nextToken;
         updateToken();
-        return oldToken;
+        Token result = nextToken;
+        nextToken = null;
+        return result;
     }
 
     private void updateToken() {
-        try {
-            nextToken = lexer.yylex();
-        } catch (IOException e) {
-            throw new ParsingErrorException();
+        if (nextToken == null) {
+            try {
+                nextToken = lexer.yylex();
+            } catch (IOException e) {
+                throw new ParsingErrorException(e.getMessage());
+            }
         }
     }
 }

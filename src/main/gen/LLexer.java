@@ -625,7 +625,7 @@ class LLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new ParsingErrorException();
+            { throw new ParsingErrorException(String.format("Error at symbol (%d:%d)", yyline, yycolumn));
             } 
             // fall through
           case 33: break;

@@ -107,5 +107,5 @@ floating        = {digits}\.{digits}?{expPart}?{suffix}? |
 
 {ident} { return new Ident(text(), yyline, yycolumn, yycolumn + text().length()); }
 
-[^]     { throw new ParsingErrorException(); }
+[^]     { throw new ParsingErrorException(String.format("Error at symbol (%d:%d)", yyline, yycolumn)); }
 

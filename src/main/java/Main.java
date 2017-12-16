@@ -14,14 +14,19 @@ public class Main {
             return;
         }
 
-        File file = new File(args[0]);
-        String string = FileUtils.readFileToString(file, Charset.defaultCharset());
+        try {
 
-        TokenIterator tokens = new TokenIterator(string);
+            File file = new File(args[0]);
+            String string = FileUtils.readFileToString(file, Charset.defaultCharset());
 
-        while (tokens.hasNext()) {
-            Token token = tokens.next();
-            System.out.println(token);
+            TokenIterator tokens = new TokenIterator(string);
+
+            while (tokens.hasNext()) {
+                Token token = tokens.next();
+                System.out.println(token);
+            }
+        } catch (ParsingErrorException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
