@@ -28,6 +28,16 @@ public class TokenIteratorTest {
     }
 
     @Test
+    public void assignmentTest() {
+        TokenIterator it = new TokenIterator("x := 42");
+        assertEquals(ImmutableList.of(
+                new Ident("x", 0, 0, 1),
+                new Assignment(0, 2, 4),
+                new NumInt("42", 0, 5, 7)),
+                tokenize(it));
+    }
+
+    @Test
     public void commentTest() {
         TokenIterator it = new TokenIterator("// hello world");
         assertEquals(ImmutableList.of(new Comment("// hello world", 0, 0, 14)), tokenize(it));

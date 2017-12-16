@@ -94,6 +94,7 @@ floating        = {digits}\.{digits}?{expPart}?{suffix}? |
 "("     { return new OpeningPar(yyline, yycolumn, yycolumn + text().length()); }
 ")"     { return new ClosingPar(yyline, yycolumn, yycolumn + text().length()); }
 ";"     { return new Semicolon(yyline, yycolumn, yycolumn + text().length()); }
+":="    { return new Assignment(yyline, yycolumn, yycolumn + text().length()); }
 
 "if"    { return newKeyword(IF); }
 "then"  { return newKeyword(THEN); }
