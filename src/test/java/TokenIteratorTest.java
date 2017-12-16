@@ -28,6 +28,12 @@ public class TokenIteratorTest {
     }
 
     @Test
+    public void commentTest() {
+        TokenIterator it = new TokenIterator("// hello world");
+        assertEquals(ImmutableList.of(new Comment("// hello world", 0, 0, 14)), tokenize(it));
+    }
+
+    @Test
     public void onlyWsTest() {
         TokenIterator it = new TokenIterator("  \n  \n \t \f \r \r\n");
         assertFalse(it.hasNext());

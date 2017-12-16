@@ -51,7 +51,7 @@ letter          = [A-Za-z]
 
 eol             = \r | \n | \r\n
 whitespace      = {eol} | [ \n\t\f]
-comment         = \/\/[^eol]*
+comment         = "//" [^\r\n]* (\r|\n|\r\n)?
 ident           = ({letter}|_)({letter} | {digit}|_)*
 
 
